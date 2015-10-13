@@ -1,0 +1,17 @@
+import codecs
+BLOCKSIZE = 1048576 # or some other, desired size in bytes
+
+with open('files.txt') as temp_file:
+    filesconvert = [line.rstrip('\n') for line in temp_file]
+print "Executing commands"
+#Loop through commands
+for i in (filesconvert):
+    filein ='configs/srxB-4/' + i + '.config'
+    fileout ='configs/srxB-4new/' + i + '.conf'
+    with codecs.open(filein, "r", "utf-8") as sourceFile:
+        with codecs.open(fileout, "w", "ascii") as targetFile:
+            while True:
+                contents = sourceFile.read(BLOCKSIZE)
+                if not contents:
+                    break
+                targetFile.write(contents)
